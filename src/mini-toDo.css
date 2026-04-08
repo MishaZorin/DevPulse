@@ -1,0 +1,96 @@
+/* Простой и понятный шрифт */
+body {
+    background-color: #0a0c10;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.todo {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 50px;
+    background: #161b22;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Группа ввода */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+input {
+    flex: 1;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 12px;
+    color: #e6edf3;
+    font-size: 14px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #00e5ff;
+}
+
+.add {
+    background: #00e5ff;
+    color: #0d1117;
+    border: none;
+    border-radius: 8px;
+    /* padding: 10px 16px; */
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.add:hover {
+    background: #00b8cc;
+}
+
+/* Список */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #21262d;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border-left: 4px solid #00e5ff; /* Акцентная полоса */
+}
+
+.task-item span {
+    color: #c9d1d9;
+    font-size: 15px;
+    word-break: break-all; /* Чтобы длинный текст не вылезал */
+    margin-right: 10px;
+}
+
+/* Кнопка удаления */
+.del-btn {
+    background: transparent;
+    color: #f85149;
+    border: 1px solid #f85149;
+    width: 20%;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.del-btn:hover {
+    background: #f85149;
+    color: #ffffff;
+}

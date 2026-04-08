@@ -1,0 +1,87 @@
+body{
+  background-image: url('./assets/wallpapers.png');
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.logo-class img{
+  width: 64px;
+  height: 64px;
+}
+.logo-class{
+  display: flex;
+  align-items: center;
+  color: white;
+  
+}
+h2{
+  color: white;
+
+}
+header{
+  background-color: #161B22;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  left: 0;
+  right: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.container{
+  width: 100%;
+   margin: 0;
+  padding: 0;
+}
+.widgets-container{
+    background-color: #0d1117; 
+    border: 1px solid rgba(0, 229, 255, 0.2); 
+    border-radius: 12px; 
+    gap: 20px;
+    align-items: center;
+    width: 280px; 
+    padding: 20px 0;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.7), 
+        0 0 20px rgba(0, 229, 255, 0.05);
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.addButton{
+   /* width: 85%; */
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #00E5FF;
+    border-radius: 6px;
+    color: #00E5FF;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@media(max-width: 600px){
+  .vidgetsMenu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .centerMobile{
+    display: flex;
+    justify-content: center;
+  }
+}

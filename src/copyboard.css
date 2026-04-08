@@ -1,0 +1,86 @@
+/* Твой основной контейнер */
+.copy-block {
+    background-color: #0d1117; /* Чуть темнее для глубины */
+    border: 1px solid rgba(0, 229, 255, 0.2); /* Тонкая неоновая рамка */
+    border-radius: 12px; /* Мягкие углы вместо 5px */
+    gap: 20px;
+    align-items: center;
+    width: 280px; /* Фиксированная ширина лучше для виджета */
+    padding: 20px 0; /* Внутренние отступы сверху/снизу */
+    
+    /* Эффект свечения и тени */
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.7), 
+        0 0 20px rgba(0, 229, 255, 0.05); /* Мягкий голубой ореол */
+        
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    
+    /* Эффект стекла */
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.copy-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 229, 255, 0.1);
+}
+
+
+textarea {
+    width: 85%;
+    height: 150px;      
+    resize: none;       
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+    color: #e6edf3;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace; 
+    font-size: 13px;
+    line-height: 1.6;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+    border-color: rgba(0, 229, 255, 0.5);
+}
+
+
+
+
+.copyButton {
+    width: 85%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #00E5FF;
+    border-radius: 6px;
+    color: #00E5FF;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.copyButton:hover {
+    background: #00E5FF;
+    color: #0d1117;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+}
+
+
+button:active {
+    transform: scale(0.95);
+}
+
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-style: italic;
+}
