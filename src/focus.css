@@ -1,0 +1,71 @@
+.player-card {
+    background-color: #0d1117;
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 12px;
+    gap: 15px;
+    align-items: center;
+    width: 280px;
+    padding: 24px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(0, 229, 255, 0.05);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+.player-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 229, 255, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 229, 255, 0.1);
+}
+
+.player-card img {
+    width: 100%; /* Картинка на всю ширину внутреннего контейнера */
+    aspect-ratio: 1 / 1; /* Делаем её квадратной */
+    object-fit: cover; /* Чтобы фото не искажалось */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+    accent-color: #00E5FF; /* Цвет кружка ползунка в современных браузерах */
+}
+
+.track-duration {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; /* Обязательно, чтобы время разошлось по краям */
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    height: 60px;
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid #00E5FF;
+    border-radius: 50%; /* Круглая кнопка выглядит привычнее для плеера */
+    color: #00E5FF;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+button:hover {
+    background: #00E5FF;
+    color: #0d1117;
+    box-shadow: 0 0 15px #00E5FF;
+}
+
+button span {
+    font-size: 24px; /* Размер иконки из Material Icons */
+}

@@ -1,0 +1,29 @@
+form{
+    background-color: #0d1117; 
+    border: 1px solid rgba(0, 229, 255, 0.2); 
+    border-radius: 12px; 
+    gap: 20px;
+    align-items: center;
+    width: 280px; 
+    padding: 20px 0; 
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.7), 
+        0 0 20px rgba(0, 229, 255, 0.05); 
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+label{
+    text-align: left;
+    color: white;
+}
+input{
+    display: block;
+    margin: auto;
+}
+button{
+    border-radius: 10px;
+}

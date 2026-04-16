@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { WidgetProvider, useWidget } from './Context';
 import Dashboard from './Dashboard'
@@ -8,6 +8,10 @@ import Network from './Network'
 import GitHub from './GitHubActivity'
 import logo from './assets/logo.png'
 import ToDo from './mini-toDo'
+import Focus from './Focus'
+import SignUp from './SignUp'
+import LogIn from './LogIn'
+import Profile from './profile';
 import './App.css'
 
 import PomodoroImg from './assets/Pomodoro.png'
@@ -46,8 +50,52 @@ function App() {
       // currentImg: ToDoImg,
       currentName: 'ToDo',
       currentWidget: ToDo
+    },
+    {
+      currentName: 'Focus',
+      currentWidget: Focus
     }
   ])
+  const [focusWidgets, setFocusWidgets] = useState([
+    { currentName: 'Focus', currentWidget: Focus },
+    { currentName: 'ToDo', currentWidget: ToDo },
+    { currentName: 'Pomodoro', currentWidget: Pomodoro }
+  ])
+
+  const [devWidgets, setDevWidgets] = useState([
+    { currentName: 'GitHub', currentWidget: GitHub },
+    { currentName: 'Copyboard', currentWidget: Copyboard },
+    { currentName: 'Network', currentWidget: Network }
+  ])
+  const [notesWidgets, setNotesWidgets] = useState([
+     { currentName: 'ToDo', currentWidget: ToDo },
+    { currentName: 'Copyboard', currentWidget: Copyboard }
+
+  ])
+
+
+ 
+  function addFocusWidget() {
+    focusWidgets.forEach(widget => addWidget(widget));
+
+
+
+  }
+  function addDevWidget() {
+    devWidgets.forEach(widget => addWidget(widget));
+
+
+  }
+  function addNotesWidget() {
+    notesWidgets.forEach(widget => addWidget(widget));
+
+
+  }
+
+
+
+
+
   function addWidget(widget) {
     const isAlreadyAdded = addedWidgets.some(w => w.currentName === widget.currentName);
 
@@ -62,9 +110,12 @@ function App() {
         <Route path="/" element={
           <div className='container'>
             <header>
-              {/* <h1 className='logo-class'><img src={logo} alt="" />DevPulse</h1> */}
               <h2>Активные виджеты: {activeWidgets}</h2>
+              <button onClick={addFocusWidget} style={{ borderRadius: '10px' }}>Focus mode</button>
+              <button onClick={addDevWidget} style={{ borderRadius: '10px' }}>Dev mode</button>
+              <button onClick={addNotesWidget} style={{ borderRadius: '10px' }}>Notes mode</button>
               <button onClick={() => navigate("/dashboard")} className='addButton'>Dashboard</button>
+              <button onClick={()=>navigate("/signup")}>Sign Up</button>
             </header>
             <div className="centerMobile">
               <div className="vidgetsMenu" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
@@ -84,6 +135,9 @@ function App() {
 
           </div>
         } />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<LogIn />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </>
