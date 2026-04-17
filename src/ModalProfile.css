@@ -1,0 +1,165 @@
+.edit-profile-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+
+    background: rgba(13, 17, 23, 0.9);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 14px;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(0, 229, 255, 0.05);
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-name: appear;
+    animation-duration: 300ms;
+}
+
+/* === TITLE === */
+.edit-profile-container h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* === AVATAR === */
+.avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.avatar-preview {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #111827;
+    border: 2px solid #00e5ff;
+
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+/* input file */
+#avatarInput {
+    color: #aaa;
+    font-size: 13px;
+}
+
+/* === FORM === */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* input */
+.form-group input {
+    padding: 10px 12px;
+    border-radius: 8px;
+
+    background: #0b0f17;
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    color: #e6f1ff;
+
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+/* focus */
+.form-group input:focus {
+    border-color: #00e5ff;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+/* disabled */
+.form-group input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* === BUTTONS === */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* primary */
+.button.primary {
+    border: 1px solid #00e5ff;
+    background: transparent;
+    color: #00e5ff;
+}
+
+.button.primary:hover {
+    background: rgba(0, 229, 255, 0.1);
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+}
+
+/* secondary */
+.button.secondary {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ccc;
+    background: transparent;
+}
+
+.button.secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* click */
+.button:active {
+    transform: scale(0.96);
+}
+
+/* === HOVER CONTAINER === */
+.edit-profile-container:hover {
+    border-color: rgba(0, 229, 255, 0.4);
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.9),
+        0 0 25px rgba(0, 229, 255, 0.15);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+    .edit-profile-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .button {
+        width: 100%;
+    }
+}

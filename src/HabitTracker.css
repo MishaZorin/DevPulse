@@ -1,0 +1,42 @@
+.page {
+    background-color: #0d1117;
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 12px;
+    gap: 20px;
+    /* width: 280px;  */
+    padding: 20px 10px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(0, 229, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 400px;
+
+}
+.right-matrix {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 6px;
+}
+
+.brick {
+    margin-bottom: 20px;
+    width: 12px;
+    height: 12px;
+    background: rgba(0, 229, 255, 0.1); 
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+.brickActive {
+    background-color: rgb(255, 149, 0);
+}
+input{
+    width: 50%;
+}

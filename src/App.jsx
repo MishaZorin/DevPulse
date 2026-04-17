@@ -5,7 +5,7 @@ import Dashboard from './Dashboard'
 import Pomodoro from './Pomodoro'
 import Copyboard from './Copyboard'
 import Network from './Network'
-import GitHub from './GitHubActivity'
+import HabitTracker from './HabitTracker'
 import logo from './assets/logo.png'
 import ToDo from './mini-toDo'
 import Focus from './Focus'
@@ -43,8 +43,8 @@ function App() {
     },
     {
       // currentImg: GitHubImg,
-      currentName: 'GitHub',
-      currentWidget: GitHub
+      currentName: 'HabitTracker',
+      currentWidget: HabitTracker
     },
     {
       // currentImg: ToDoImg,
@@ -63,7 +63,7 @@ function App() {
   ])
 
   const [devWidgets, setDevWidgets] = useState([
-    { currentName: 'GitHub', currentWidget: GitHub },
+    // { currentName: 'GitHub', currentWidget: GitHub },
     { currentName: 'Copyboard', currentWidget: Copyboard },
     { currentName: 'Network', currentWidget: Network }
   ])

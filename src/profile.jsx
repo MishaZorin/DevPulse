@@ -1,10 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import './profile.css'
 import { useNavigate } from 'react-router-dom'
+import ModalProfile from './ModalProfile'
 
 function Profile() {
   const navigate = useNavigate()
-
+  const [isOpen, setIsOpen] = useState(false)
+  function handleOpen() {
+    setIsOpen(true)
+  }
+  function handleClose() {
+    setIsOpen(false)
+  }
 
 
   return (
@@ -27,7 +34,8 @@ function Profile() {
             <h3>Account</h3>
             <p>UserName:</p>
             <p>e-mail:</p>
-            <button className="button">Edit profile</button>
+            {/* <ModalProfile isOpen={isOpen} handleClose={() => handleClose()}></ModalProfile> */}
+            <button className="button" onClick={() => handleOpen()}>Edit profile</button>
           </div>
 
           <div className="card">
