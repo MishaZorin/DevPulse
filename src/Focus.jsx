@@ -57,11 +57,38 @@ function Focus() {
     }
   };
 }, []);
+const handleMouseDown = (e) => {
+    // 1. Не двигаем, если жмем на текст или кнопку
+    if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON') return;
+
+    const el = e.currentTarget; // Берем именно тот блок, на который нажали
+
+    // 2. Считаем сдвиг, чтобы не прыгало
+    const shiftX = e.clientX - el.getBoundingClientRect().left;
+    const shiftY = e.clientY - el.getBoundingClientRect().top;
+
+    function moveAt(pageX, pageY) {
+      el.style.left = pageX - shiftX + 'px';
+      el.style.top = pageY - shiftY + 'px';
+    }
+
+    function onMouseMove(event) {
+      moveAt(event.pageX, event.pageY);
+    }
+
+    // 3. Вешаем события на документ
+    document.addEventListener('mousemove', onMouseMove);
+
+    document.onmouseup = function () {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.onmouseup = null;
+    };
+  };
 
 
   return (
     <>
-      <div className="player-card">
+      <div className="player-card" style={{ position: 'absolute', cursor: 'grab' }} onMouseDown={handleMouseDown}>
         <img src={coffeeImgMusic} alt=""/>
         <input type="range" min={0} max={duration} value={currentTime} onChange={handleSeek} />
         <audio src={coffeeAudio} ref={audioRef} onTimeUpdate={handleTimeUpdate}></audio>

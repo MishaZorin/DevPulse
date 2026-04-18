@@ -11,11 +11,12 @@ export const WidgetProvider = ({ children }) => {
     setAddedWidgets((prev) => [...prev, widget]);
       setActiveWidgets((w)=> w + 1)
   };
-  const deleteWidgetFromDashboard = (widget) =>{
+  const deleteWidgetFromDashboard = (indexToRemove) =>{
     setActiveWidgets((w)=> w - 1)
-     setAddedWidgets((prev) =>
-    prev.filter(w => w.currentName !== widget.currentName)
+    setAddedWidgets((prevWidgets) => 
+    setAddedWidgets((prev) => prev.filter(widget => widget.id !== idToRemove))
   );
+   
   }
 
   return (

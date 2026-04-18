@@ -1,7 +1,7 @@
 .network-widget {
     background: #161b22;
     flex-direction: column;
-    width: 70%;
+    /* width: 70%; */
     padding: 20px;
     margin-top: 10px;
 }

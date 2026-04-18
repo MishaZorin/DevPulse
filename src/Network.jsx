@@ -24,13 +24,37 @@ function Network() {
     })
 
   }
-  // useEffect(()=>{
-  //   updateConnectionStatus()
-  // },[])
+   const handleMouseDown = (e) => {
+    // 1. Не двигаем, если жмем на текст или кнопку
+   
+
+    const el = e.currentTarget; // Берем именно тот блок, на который нажали
+
+    // 2. Считаем сдвиг, чтобы не прыгало
+    const shiftX = e.clientX - el.getBoundingClientRect().left;
+    const shiftY = e.clientY - el.getBoundingClientRect().top;
+
+    function moveAt(pageX, pageY) {
+      el.style.left = pageX - shiftX + 'px';
+      el.style.top = pageY - shiftY + 'px';
+    }
+
+    function onMouseMove(event) {
+      moveAt(event.pageX, event.pageY);
+    }
+
+    // 3. Вешаем события на документ
+    document.addEventListener('mousemove', onMouseMove);
+
+    document.onmouseup = function () {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.onmouseup = null;
+    };
+  };
 
   return (
     <>
-      <div className="network-widget">
+      <div className="network-widget" style={{ position: 'absolute', cursor: 'grab' }} onMouseDown={handleMouseDown}>
         <div className="network-content">
           <div className="left-info">
             <div className="status-label">NETWORK NODE</div>

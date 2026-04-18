@@ -3,6 +3,7 @@ import { useWidget } from './Context';
 
 
 import './pomodoro.css'
+import { add } from 'firebase/firestore/lite/pipelines';
 
 function Pomodoro() {
     const { addedWidgets, deleteWidgetFromDashboard } = useWidget();
@@ -13,7 +14,7 @@ function Pomodoro() {
         if (timeRef.current) return;
         timeRef.current = setInterval(() => {
             setTime((prev) => {
-                
+
                 return prev + 1
             })
         }, 1000)
@@ -29,59 +30,44 @@ function Pomodoro() {
 
 
     }
-    function deleteWidget(widget, event) {
-        deleteWidgetFromDashboard(widget)
-        console.log('work');
+    const handleMouseDown = (e) => {
+        // 1. Не двигаем, если жмем на текст или кнопку
 
 
-    }
-    //     useEffect(() => {
-    //         let target = document.getElementById('target')
-    //         target.onmousedown = function (event) { // (1) отследить нажатие
+        const el = e.currentTarget; // Берем именно тот блок, на который нажали
 
-    //             // (2) подготовить к перемещению:
-    //             // разместить поверх остального содержимого и в абсолютных координатах
-    //             target.style.position = 'absolute';
-    //             target.style.zIndex = 1000;
-    //             // переместим в body, чтобы мяч был точно не внутри position:relative
+        // 2. Считаем сдвиг, чтобы не прыгало
+        const shiftX = e.clientX - el.getBoundingClientRect().left;
+        const shiftY = e.clientY - el.getBoundingClientRect().top;
 
-    //             // и установим абсолютно спозиционированный мяч под курсор
+        function moveAt(pageX, pageY) {
+            el.style.left = pageX - shiftX + 'px';
+            el.style.top = pageY - shiftY + 'px';
+        }
 
-    //             moveAt(event.pageX, event.pageY);
+        function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+        }
 
-    //             // передвинуть мяч под координаты курсора
-    //             // и сдвинуть на половину ширины/высоты для центрирования
-    //             function moveAt(pageX, pageY) {
-    //                 target.style.left = pageX - target.offsetWidth / 2 + 'px';
-    //                 target.style.top = pageY - target.offsetHeight / 2 + 'px';
-    //             }
+        // 3. Вешаем события на документ
+        document.addEventListener('mousemove', onMouseMove);
 
-    //             function onMouseMove(event) {
-    //                 moveAt(event.pageX, event.pageY);
-    //             }
-
-
-    //             document.addEventListener('mousemove', onMouseMove);
-    //             target.onmouseup = function () {
-    //                 document.removeEventListener('mousemove', onMouseMove);
-    //                 target.onmouseup = null;
-    //             };
-
-    //         };
-    //     }, [])
-    //     function w(event) {
-    //         event.stopPropagation()
-    // console.log('w');
-
-    //     }
+        document.onmouseup = function () {
+            document.removeEventListener('mousemove', onMouseMove);
+            document.onmouseup = null;
+        };
+    };
 
 
     return (
         <>
-            <div className='pomodoro-container' id='target'>
-                {addedWidgets.map((widget, index) => (
-                    <button onMouseDown={(event) => w(event)} onClick={(event) => deleteWidget(widget, event)} className='deleteButton'>Delete widget</button>
-                ))}
+            <div className='pomodoro-container' style={{ position: 'absolute', cursor: 'grab' }} onMouseDown={handleMouseDown}>
+                {/* {addedWidgets.map((widget) => (
+  <button key={widget.id} onClick={() => deleteWidgetFromDashboard(widget.id)}>
+    Удалить
+  </button>
+))} */}
+
                 <div className="timer-display">
                     <span style={{ color: '#00E5FF' }}>{String(Math.floor(time / 60)).padStart(2, "0")}</span>
                     <span style={{ color: '#00E5FF' }}>:</span>
