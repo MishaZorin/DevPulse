@@ -50,11 +50,7 @@ function Copyboard() {
         onMouseDown={handleMouseDown}
         style={{ position: 'absolute', cursor: 'grab' }}
       >
-        {/* {addedWidgets.map((widget) => (
-  <button key={widget.id} onClick={() => deleteWidgetFromDashboard(widget.id)}>
-    Удалить
-  </button>
-))} */}
+
 
         <h1>Copyboard</h1>
         <textarea onChange={(e) => setText(e.target.value)}></textarea>

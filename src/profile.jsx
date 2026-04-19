@@ -3,7 +3,7 @@ import './profile.css'
 import { useNavigate } from 'react-router-dom'
 import ModalProfile from './ModalProfile'
 
-function Profile() {
+function Profile({inputValue}) {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
   function handleOpen() {
@@ -23,7 +23,7 @@ function Profile() {
           <div className="avatar" id="avatar"></div>
 
           <div className="user-info">
-            <h2 id="username">Username</h2>
+            <h2 id="username">{inputValue}</h2>
             <p id="email">user@email.com</p>
           </div>
         </div>
@@ -34,8 +34,8 @@ function Profile() {
             <h3>Account</h3>
             <p>UserName:</p>
             <p>e-mail:</p>
-            {/* <ModalProfile isOpen={isOpen} handleClose={() => handleClose()}></ModalProfile> */}
-            <button className="button" onClick={() => handleOpen()}>Edit profile</button>
+            
+            <button className="button" onClick={() => navigate("/profileEdit")}>Edit profile</button>
           </div>
 
           <div className="card">

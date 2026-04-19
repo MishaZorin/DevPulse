@@ -52,7 +52,14 @@
     gap: 12px;
     margin-bottom: 25px;
 }
-
+#editProfileForm{
+    display: block;
+    margin: auto;
+}
+label{
+    display: flex;
+    justify-content: center;
+}
 .avatar-preview {
     width: 100px;
     height: 100px;

@@ -12,6 +12,7 @@ import Focus from './Focus'
 import SignUp from './SignUp'
 import LogIn from './LogIn'
 import Profile from './profile';
+import ProfileEdit from './ModalProfile';
 import './App.css'
 
 import PomodoroImg from './assets/Pomodoro.png'
@@ -22,9 +23,9 @@ import ToDoImg from './assets/ToDo.png'
 
 function App() {
   const navigate = useNavigate();
-
   const { addWidgetToDashboard, addedWidgets } = useWidget();
   const { activeWidgets, setActiveWidgets } = useWidget()
+  const { setIsSignedUp, isSignedUp } = useWidget()
   const [widgets, setWidgets] = useState([
     {
       // currentImg: PomodoroImg,
@@ -68,13 +69,14 @@ function App() {
     { currentName: 'Network', currentWidget: Network }
   ])
   const [notesWidgets, setNotesWidgets] = useState([
-     { currentName: 'ToDo', currentWidget: ToDo },
+    { currentName: 'ToDo', currentWidget: ToDo },
     { currentName: 'Copyboard', currentWidget: Copyboard }
 
   ])
 
 
- 
+
+
   function addFocusWidget() {
     focusWidgets.forEach(widget => addWidget(widget));
 
@@ -115,7 +117,9 @@ function App() {
               <button onClick={addDevWidget} style={{ borderRadius: '10px' }}>Dev mode</button>
               <button onClick={addNotesWidget} style={{ borderRadius: '10px' }}>Notes mode</button>
               <button onClick={() => navigate("/dashboard")} className='addButton'>Dashboard</button>
-              <button onClick={()=>navigate("/signup")}>Sign Up</button>
+              <button onClick={() => navigate(isSignedUp ? "/profile" : "/signup")}>
+                {isSignedUp ? "Profile" : "Sign Up"}
+              </button>
             </header>
             <div className="centerMobile">
               <div className="vidgetsMenu" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
@@ -124,7 +128,7 @@ function App() {
                     <div className='img-container'>
                       <h4 style={{ color: 'white' }}>{widget.currentName}</h4>
                       <button onClick={() => addWidget(widget)} className='addButton'>Добавить виджет</button>
-                      {/* <img src={widget.currentImg} alt={widget.currentName} /> */}
+             
                     </div>
 
                   </div>
@@ -136,6 +140,7 @@ function App() {
           </div>
         } />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profileEdit" element={<ProfileEdit />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/dashboard" element={<Dashboard />} />

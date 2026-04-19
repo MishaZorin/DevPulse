@@ -5,22 +5,23 @@ export const WidgetProvider = ({ children }) => {
   const [addedWidgets, setAddedWidgets] = useState([]);
   const [activeWidgets, setActiveWidgets] = useState(0)
   const [isSignedUp, setIsSignedUp] = useState(false)
-
-  function signUpCheck(){}
   const addWidgetToDashboard = (widget) => {
     setAddedWidgets((prev) => [...prev, widget]);
-      setActiveWidgets((w)=> w + 1)
+    setActiveWidgets((w) => w + 1)
   };
-  const deleteWidgetFromDashboard = (indexToRemove) =>{
-    setActiveWidgets((w)=> w - 1)
-    setAddedWidgets((prevWidgets) => 
-    setAddedWidgets((prev) => prev.filter(widget => widget.id !== idToRemove))
-  );
-   
+  const deleteWidgetFromDashboard = (widget) => {
+    setActiveWidgets((w) => w - 1)
+    setAddedWidgets((prev) => prev.filter((el) => {
+      console.log(el, widget);
+      return el !== widget
+
+    }))
+
+
   }
 
   return (
-    <WidgetContext.Provider value={{ addedWidgets, addWidgetToDashboard,deleteWidgetFromDashboard, setActiveWidgets, activeWidgets, setAddedWidgets }}>
+    <WidgetContext.Provider value={{ addedWidgets,setIsSignedUp,isSignedUp, addWidgetToDashboard, deleteWidgetFromDashboard, setActiveWidgets, activeWidgets, setAddedWidgets }}>
       {children}
     </WidgetContext.Provider>
   );

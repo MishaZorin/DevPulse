@@ -1,45 +1,37 @@
 import { useEffect, useRef, useState } from 'react'
-
 import './ModalProfile.css'
+import { useNavigate } from 'react-router-dom'
+import Profile from './profile'
+function ProfileEdit() {
+    const navigate = useNavigate()
+    const [inputValue, setInputValue] = useState('')
 
-function ModalProfile({ isOpen, handleClose }) {
-    if (!isOpen) return null;
     return (
         <>
             <div className="modal-overlay">
-                <div class="edit-profile-container" onClick={(e) => e.stopPropagation()}>
-
+                <div class="edit-profile-container" >
                     <h2>Edit Profile</h2>
-
                     <div class="avatar-section">
                         <div class="avatar-preview" id="avatarPreview"></div>
                         <input type="file" accept='image/*' />
-
                     </div>
-
-
                     <form id="editProfileForm">
-
-
                         <div class="form-group">
                             <label>Display Name</label>
                             <input
                                 type="text"
                                 id="displayName"
                                 placeholder="Enter your name"
+                                value={inputValue}
+                                onChange={(event) => setInputValue(event.target.value)}
+
                             />
                         </div>
-
-
-                     
-
-
                         <div class="form-actions">
-                            <button type="submit" class="button primary">
+                            <button type="submit" class="button primary" onClick={() => navigate("/profile")}>
                                 Save Changes
                             </button>
-
-                            <button type="button" class="button secondary" id="cancelBtn" onClick={handleClose}>
+                            <button type="button" class="button secondary" id="cancelBtn" onClick={() => navigate("/profile")}>
                                 Cancel
                             </button>
                         </div>
@@ -48,13 +40,9 @@ function ModalProfile({ isOpen, handleClose }) {
 
                 </div>
             </div>
-
-
-
-
-
+            <Profile inputValue={inputValue}></Profile>
         </>
     )
 }
 
-export default ModalProfile
+export default ProfileEdit

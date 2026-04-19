@@ -1,5 +1,6 @@
 import { auth } from './firebase';
 import { useEffect, useState } from 'react'
+import { WidgetProvider, useWidget } from './Context';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
 import './signLogin.css'
@@ -8,6 +9,7 @@ function LogIn() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const { setIsSignedUp, isSignedUp } = useWidget()
     const onLogIn = (e) => {
         e.preventDefault();
         console.log("Попытка регистрации с:", email);
@@ -16,6 +18,7 @@ function LogIn() {
                 const user = userCredential.user;
                 if (user) {
                     navigate("/profile")
+                    setIsSignedUp(true)
 
                 }
 
@@ -75,7 +78,7 @@ function LogIn() {
                                 >
                                     Sign in
                                 </button>
-                                <div className="flex-buttons" style={{display:'flex', gap:'10px', justifyContent:'center'}}>
+                                <div className="flex-buttons" style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
                                     <button onClick={() => navigate("/")}>
                                         Back to app
                                     </button>

@@ -1,7 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
 import { useWidget } from './Context';
-
-
 import './pomodoro.css'
 import { add } from 'firebase/firestore/lite/pipelines';
 
@@ -62,11 +60,6 @@ function Pomodoro() {
     return (
         <>
             <div className='pomodoro-container' style={{ position: 'absolute', cursor: 'grab' }} onMouseDown={handleMouseDown}>
-                {/* {addedWidgets.map((widget) => (
-  <button key={widget.id} onClick={() => deleteWidgetFromDashboard(widget.id)}>
-    Удалить
-  </button>
-))} */}
 
                 <div className="timer-display">
                     <span style={{ color: '#00E5FF' }}>{String(Math.floor(time / 60)).padStart(2, "0")}</span>

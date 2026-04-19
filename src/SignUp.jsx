@@ -4,11 +4,14 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from "react-router-dom";
 
 import './signLogin.css'
+import { useWidget } from './Context';
 
 export default function signUp() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const {setIsSignedUp, isSignedUp} = useWidget()
+  
     const onSubmit = (e) => {
         e.preventDefault();
         console.log("Попытка регистрации с:", email);
@@ -17,6 +20,7 @@ export default function signUp() {
                 user = userCredential.user;
                 if (user) {
                     navigate("/profile")
+                    setIsSignedUp(true)
 
                 }
 
