@@ -2,9 +2,11 @@ import React, { createContext, useState, useContext } from 'react';
 const WidgetContext = createContext();
 export const WidgetProvider = ({ children }) => {
   const [user, setUser] = useState('')
+  const [email, setEmail] = useState('')
   const [addedWidgets, setAddedWidgets] = useState([]);
   const [activeWidgets, setActiveWidgets] = useState(0)
   const [isSignedUp, setIsSignedUp] = useState(false)
+  const [taskDone, setTaskDone] = useState(3)
   const addWidgetToDashboard = (widget) => {
     setAddedWidgets((prev) => [...prev, widget]);
     setActiveWidgets((w) => w + 1)
@@ -21,7 +23,7 @@ export const WidgetProvider = ({ children }) => {
   }
 
   return (
-    <WidgetContext.Provider value={{ addedWidgets,setIsSignedUp,isSignedUp, addWidgetToDashboard, deleteWidgetFromDashboard, setActiveWidgets, activeWidgets, setAddedWidgets }}>
+    <WidgetContext.Provider value={{ taskDone, setTaskDone,email,setEmail,addedWidgets,setIsSignedUp,isSignedUp, addWidgetToDashboard, deleteWidgetFromDashboard, setActiveWidgets, activeWidgets, setAddedWidgets }}>
       {children}
     </WidgetContext.Provider>
   );

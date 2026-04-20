@@ -1,9 +1,10 @@
 import { useState } from 'react'
-
+import { useWidget } from './Context';
 import './mini-toDo.css'
 
 function ToDo() {
     const [inputValue, setInputValue] = useState('')
+    const { taskDone, setTaskDone } = useWidget()
     const [tasks, setTasks] = useState([
         {
             text: 'Погладить кота',
@@ -29,6 +30,7 @@ function ToDo() {
                 { text: inputValue, isCompleted: false, id: Date.now() }
             ]);
             setInputValue('');
+            setTaskDone((p)=> p + 1)
         }
     };
 
@@ -39,6 +41,8 @@ function ToDo() {
 
     const deleteTask = (id) => {
         setTasks(tasks.filter(task => task.id !== id));
+            setTaskDone((p)=> p - 1)
+        
     };
 
 const handleMouseDown = (e) => {

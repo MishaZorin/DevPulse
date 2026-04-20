@@ -7,20 +7,21 @@ import './signLogin.css'
 import { useWidget } from './Context';
 
 export default function signUp() {
-    const [email, setEmail] = useState('')
+    const { email, setEmail } = useWidget()
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const {setIsSignedUp, isSignedUp} = useWidget()
-  
+    const { setIsSignedUp, isSignedUp } = useWidget()
+
     const onSubmit = (e) => {
         e.preventDefault();
         console.log("Попытка регистрации с:", email);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                user = userCredential.user;
+               const user = userCredential.user;
                 if (user) {
                     navigate("/profile")
                     setIsSignedUp(true)
+                        localStorage.setItem("email", user.email)
 
                 }
 

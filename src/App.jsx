@@ -14,7 +14,6 @@ import LogIn from './LogIn'
 import Profile from './profile';
 import ProfileEdit from './ModalProfile';
 import './App.css'
-
 import PomodoroImg from './assets/Pomodoro.png'
 import CopyboardImg from './assets/Copyboard.png'
 import NetworkImg from './assets/Network.png'

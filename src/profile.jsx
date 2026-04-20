@@ -1,71 +1,93 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './profile.css'
 import { useNavigate } from 'react-router-dom'
-import ModalProfile from './ModalProfile'
+import { WidgetProvider, useWidget } from './Context';
 
-function Profile({inputValue}) {
+import { auth } from './firebase';
+
+function Profile() {
   const navigate = useNavigate()
-  const [isOpen, setIsOpen] = useState(false)
-  function handleOpen() {
-    setIsOpen(true)
-  }
-  function handleClose() {
-    setIsOpen(false)
-  }
+  const { activeWidgets, setActiveWidgets } = useWidget()
+  const { email, setEmail } = useWidget()
+  const [username, setUsername] = useState('')
+  const [avatar, setAvatar] = useState(null)
+  const { taskDone, setTaskDone } = useWidget()
 
+  useEffect(() => {
+    const savedName = localStorage.getItem("username")
+    const savedAvatar = localStorage.getItem("avatar")
+    const savedEmail = localStorage.getItem("email")
+
+
+
+    if (savedName) setUsername(savedName)
+    if (savedEmail) setEmail(savedEmail)
+
+    if (savedAvatar) setAvatar(savedAvatar)
+  }, [])
 
   return (
-    <>
+    <div className="container">
 
-      <div className="container">
-
-        <div className="profile-header">
-          <div className="avatar" id="avatar"></div>
-
-          <div className="user-info">
-            <h2 id="username">{inputValue}</h2>
-            <p id="email">user@email.com</p>
-          </div>
+      <div className="profile-header">
+        <div className="avatar">
+          {avatar && <img src={avatar} alt="avatar" />}
         </div>
 
-        <div className="grid">
-
-          <div className="card">
-            <h3>Account</h3>
-            <p>UserName:</p>
-            <p>e-mail:</p>
-            
-            <button className="button" onClick={() => navigate("/profileEdit")}>Edit profile</button>
-          </div>
-
-          <div className="card">
-            <h3>Dashboard</h3>
-            <p>Active widgets: <span id="widgetsCount">0</span></p>
-            <button className="button" onClick={() => navigate('/')}>Go to dashboard</button>
-          </div>
-
-          {/* <div class="card">
-            <h3>Settings</h3>
-            <button className="button">Theme</button>
-            <button className="button">Notifications</button>
-          </div> */}
-
-          <div class="card">
-            <h3>Stats</h3>
-            <p>Focus time: 0h</p>
-            <p>Tasks done: 0</p>
-          </div>
-
+        <div className="user-info">
+          <h2>{username || "No name"}</h2>
+          <p>{email}</p>
         </div>
-        <div className="logout">
-          <button >Log out</button>
+      </div>
 
+      <div className="grid">
+
+        <div className="card">
+          <h3>Account</h3>
+          <p>UserName: {username}</p>
+          <p>{email}</p>
+
+          <button
+            className="button"
+            onClick={() => navigate("/profileEdit")}
+          >
+            Edit profile
+          </button>
+        </div>
+
+        <div className="card">
+          <h3>Dashboard</h3>
+          <p>Active widgets: {activeWidgets} </p>
+
+          <button
+            className="button"
+            onClick={() => navigate('/')}
+          >
+            Go to dashboard
+          </button>
+        </div>
+
+        <div className="card">
+          <h3>Stats</h3>
+          <p>Focus time: 0h</p>
+          <p>Tasks done: {taskDone}</p>
         </div>
 
       </div>
 
+      <div className="logout">
+        <button
+          onClick={() => {
+            auth.signOut()
+            localStorage.clear()
+            navigate("/login")
+          }}
+        >
+          Log out
+        </button>
+      </div>
 
-    </>
+    </div>
   )
 }
 

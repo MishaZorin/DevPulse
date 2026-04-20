@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import './signLogin.css'
 
 function LogIn() {
-    const [email, setEmail] = useState('')
+    const { email, setEmail } = useWidget()
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const { setIsSignedUp, isSignedUp } = useWidget()
@@ -19,6 +19,8 @@ function LogIn() {
                 if (user) {
                     navigate("/profile")
                     setIsSignedUp(true)
+                    localStorage.setItem("email", user.email)
+
 
                 }
 
